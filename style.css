@@ -11,10 +11,11 @@
 }
 
 .description {
+  margin: 24px;
   font-size: 1rem;
 }
 .generator {
-  margin: 16px;
+  margin: 24px;
   font-size: 1rem;
   padding: 16px;
   background: rgb(240, 241, 255);
@@ -22,6 +23,7 @@
   cursor: pointer;
 }
 .generator:hover {
+  margin: 24px;
   background: rgb(220, 246, 255);
 }
 
@@ -32,12 +34,12 @@
 }
 
 html {
-  font-size: 150%;
+  font-size: 2vw;
 }
 
 @media (max-width: 1300px) {
   html {
-    font-size: 200%;
+    font-size: 5vmin;
   }
   .generator {
     border: 5px solid black;
@@ -46,7 +48,7 @@ html {
 
 @media (max-width: 800px) {
   html {
-    font-size: 300%;
+    font-size: 10vmin;
   }
   .generator {
     width: 100%;
