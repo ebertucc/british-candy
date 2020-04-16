@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.description {
+
+}
+.generator {
+  margin: 16px;
+}
+.generated-name {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
