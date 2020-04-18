@@ -248,11 +248,14 @@ function britishismWord(nounOrAdjective) {
     }
   }
   if (repeat) {
-    if (nounOrAdjective === 'noun')
+    let sliceLength = 0
+    const lastLetter = name.slice(-1)
+    if (nounOrAdjective === 'noun' && lastLetter === 's') 
       name = name.slice(0, -1)
     let partTwo = ' ' + getRandomWeightedItem(prefixPool)
     partTwo += name.substring(prefixLength)
-    name += partTwo + 's'
+    if (nounOrAdjective === 'noun' && lastLetter === 's')
+      name += partTwo + 's'
   }
 
   return name
