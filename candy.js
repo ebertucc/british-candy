@@ -1,3 +1,5 @@
+// https://github.com/ebertucc/british-candy
+
 // DOM setup
 const generatorButtonElement = document.querySelector('.generator')
 const nameElement = document.querySelector('.generated-name')
@@ -28,11 +30,12 @@ function getRandomWeightedItem(weightedArray) {
 	}
 }
 
+// Weighted distributions of name components
 const brandPool = [
-  { name: "Cadbury", weight: 8 },
-  { name: "Nestle", weight: 4 },
+  { name: "Cadbury", weight: 10 },
+  { name: "Nestle", weight: 5 },
+  { name: "Tesco Select", weight: 3 },
   { name: "Rowntree's", weight: 2 },
-  { name: "Tesco Select", weight: 2 },
   { name: "Yorkshire", weight: 2 },
   { name: "Her Majesty's", weight: 1 },
 ]
@@ -144,14 +147,15 @@ const nounCompoundEndingPool = [
 
 // Candy name generator
 function candy() {
-  let candyName = ''
-  candyName += ''
-  candyName += brand()
-  candyName += adjective()
-  candyName += ingredients()
-  candyName += britishism()
-  candyName += postpositive()
-  return candyName
+  let name = ''
+  name += ''
+  name += brand()
+  name += adjective()
+  name += ingredients()
+  name += britishism()
+  name += postpositive()
+  
+  return name
 }
 
 // Returns 'A ' or ''
