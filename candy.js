@@ -36,6 +36,7 @@ const brandPool = [
   { name: "Nestle", weight: 5 },
   { name: "Tesco Select", weight: 3 },
   { name: "Rowntree's", weight: 2 },
+  { name: "Tunnock's", weight: 2 },
   { name: "Yorkshire", weight: 2 },
   { name: "Her Majesty's", weight: 1 },
 ]
@@ -46,6 +47,7 @@ const adjectivePool = [
   { name: "Minty", weight: 4 },
   { name: "Milky", weight: 3 },
   { name: "Sticky", weight: 3 },
+  { name: "Chewy", weight: 2 },
   { name: "Royal", weight: 2 },
   { name: "Turkish", weight: 1 },
   { name: "Scrumptious", weight: 1 },
@@ -63,6 +65,8 @@ const ingredientsPool = [
   { name: 'Nougat', weight: 1 },
   { name: 'Caramel', weight: 1 },
   { name: 'Toffee', weight: 1 },
+  { name: 'Jelly', weight: 1 },
+  { name: 'Tea', weight: 1 },
 ]
 
 const postpositivePool = [
@@ -119,8 +123,8 @@ const nucleus3Pool = [
 ]
 
 const adjectiveEndingPool = [
-  { name: 'ly', weight: 1 },
-  { name: 'y', weight: 1 },
+  { name: 'ly', weight: 2 },
+  { name: 'y', weight: 2 },
   { name: 'le', weight: 1 },
   { name: 'er', weight: 1 },
 ]
@@ -142,6 +146,8 @@ const nounCompoundEndingPool = [
   { name: 'crumpets', weight: 1 },
   { name: 'noughts', weight: 1 },
   { name: 'scotches', weight: 1 },
+  { name: 'babies', weight: 1 },
+  { name: 'chews', weight: 1 },
 ]
 
 
@@ -224,9 +230,16 @@ function britishism() {
 
 function britishismWord(nounOrAdjective) {
   let nucleus2, nucleus3, repeat
-  if (Math.random() > .75) nucleus2 = true
-  if (nucleus2 && Math.random() > .85) nucleus3 = true
-  if (Math.random() > .8) repeat = true
+  let repeatThreshold = .65
+  if (Math.random() > .75) {
+    nucleus2 = true
+    repeatThreshold += .1 // make 2 nuclei repeat less often
+  }
+  if (nucleus2 && Math.random() > .82) {
+    nucleus3 = true
+    repeatThreshold -= .3 // make 3 nuclei repeat *more* often
+  }
+  if (Math.random() > repeatThreshold) repeat = true
 
   let name = ''
   const prefix = getRandomWeightedItem(prefixPool)
@@ -248,7 +261,6 @@ function britishismWord(nounOrAdjective) {
     }
   }
   if (repeat) {
-    let sliceLength = 0
     const lastLetter = name.slice(-1)
     if (nounOrAdjective === 'noun' && lastLetter === 's') 
       name = name.slice(0, -1)
