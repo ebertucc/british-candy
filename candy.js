@@ -114,7 +114,7 @@ const nucleus2Pool = [
 ]
 
 const nucleus3Pool = [
-  { name: 'umbeld', weight: 1 },
+  { name: 'umbeld', weight: 3 },
   { name: 'ippit', weight: 1 },
 ]
 
@@ -224,8 +224,8 @@ function britishism() {
 
 function britishismWord(nounOrAdjective) {
   let nucleus2, nucleus3, repeat
-  if (Math.random() > .7) nucleus2 = true
-  if (nucleus2 && Math.random() > .8) nucleus3 = true
+  if (Math.random() > .75) nucleus2 = true
+  if (nucleus2 && Math.random() > .85) nucleus3 = true
   if (Math.random() > .8) repeat = true
 
   let name = ''
@@ -240,7 +240,7 @@ function britishismWord(nounOrAdjective) {
   if (nounOrAdjective === 'adjective')
     name += getRandomWeightedItem(adjectiveEndingPool)
   if (nounOrAdjective === 'noun') {
-    if (Math.random() > .4) {
+    if (Math.random() > .55) {
       name += getRandomWeightedItem(nounSimpleEndingPool)
     } else {
       name += getRandomWeightedItem(adjectiveEndingPool)
