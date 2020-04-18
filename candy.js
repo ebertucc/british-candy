@@ -20,7 +20,6 @@ function getRandomWeightedItem(weightedArray) {
 	}
   
   let random = Math.random() * totalWeight
-  console.log(random)
 
 	for (let weightedElement of weightedArray) {
 		if (random < weightedElement.weight) {
@@ -66,7 +65,6 @@ const ingredientsPool = [
   { name: 'Caramel', weight: 1 },
   { name: 'Toffee', weight: 1 },
   { name: 'Jelly', weight: 1 },
-  { name: 'Tea', weight: 1 },
 ]
 
 const postpositivePool = [
@@ -192,9 +190,9 @@ function adjective() {
 function ingredients() {
   const randy = Math.random()
   let name = ''
-  if (randy > .3) {
+  if (randy > .35) {
     name = getRandomWeightedItem(ingredientsPool) + ' '
-    if (randy > .7) {
+    if (randy > .8) {
       name += getRandomWeightedItem(ingredientsPool) + ' '
     }
   }
@@ -216,8 +214,8 @@ function postpositive() {
 // Returns an authentic British wibbeldy word
 function britishism() {
   let adj1, adj2
-  if (Math.random() > .5) adj1 = true
-  if (adj1 && Math.random() > .5) adj2 = true
+  if (Math.random() > .55) adj1 = true
+  if (adj1 && Math.random() > .55) adj2 = true
   let name = ''
   if (adj1)
     name += britishismWord('adjective') + ' '
@@ -229,17 +227,9 @@ function britishism() {
 }
 
 function britishismWord(nounOrAdjective) {
-  let nucleus2, nucleus3, repeat
-  let repeatThreshold = .65
-  if (Math.random() > .75) {
-    nucleus2 = true
-    repeatThreshold += .1 // make 2 nuclei repeat less often
-  }
-  if (nucleus2 && Math.random() > .82) {
-    nucleus3 = true
-    repeatThreshold -= .3 // make 3 nuclei repeat *more* often
-  }
-  if (Math.random() > repeatThreshold) repeat = true
+  let nucleus2, nucleus3
+  if (Math.random() > .69) nucleus2 = true
+  if (nucleus2 && Math.random() > .83) nucleus3 = true
 
   let name = ''
   const prefix = getRandomWeightedItem(prefixPool)
@@ -260,14 +250,27 @@ function britishismWord(nounOrAdjective) {
       name += getRandomWeightedItem(nounCompoundEndingPool)
     }
   }
+
+  let repeat = false
+  let repeatThreshold = .65
+  if (nucleus2)
+    repeatThreshold += .1 // make 2 nuclei repeat less often
+  if (nucleus3)
+    repeatThreshold -= .5 // make 3 nuclei repeat *more* often
+  if (nounOrAdjective === 'noun')
+    repeatThreshold += 2 // make nouns repeat less often 
+  if (Math.random() > repeatThreshold) repeat = true
+
   if (repeat) {
+    console.log('hit!')
     const lastLetter = name.slice(-1)
     if (nounOrAdjective === 'noun' && lastLetter === 's') 
       name = name.slice(0, -1)
     let partTwo = ' ' + getRandomWeightedItem(prefixPool)
     partTwo += name.substring(prefixLength)
+    name += partTwo
     if (nounOrAdjective === 'noun' && lastLetter === 's')
-      name += partTwo + 's'
+    name += 's'
   }
 
   return name
