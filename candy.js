@@ -262,7 +262,6 @@ function britishismWord(nounOrAdjective) {
   if (Math.random() > repeatThreshold) repeat = true
 
   if (repeat) {
-    console.log('hit!')
     const lastLetter = name.slice(-1)
     if (nounOrAdjective === 'noun' && lastLetter === 's') 
       name = name.slice(0, -1)
